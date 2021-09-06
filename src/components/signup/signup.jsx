@@ -71,14 +71,14 @@ class Signup extends Component {
             />
           </FormGroup>
         </Form>
-        <p className="tcTxt">
+        <p className="tcTxt new-txt">
           By signing up, you agree to Carly's website{" "}
           <a
             href="https://www.carly.co/website-terms-conditions"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Terms &amp; Conditions
+            Terms &amp; Conditions 
           </a>
           and
           <a
