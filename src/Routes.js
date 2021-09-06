@@ -1,14 +1,15 @@
 import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Switch,Redirect } from 'react-router-dom';
 import AppliedRoute from './AppliedRoute';
 import Home from './Home';
 import Login from './components/login/login';
 import Signup from './components/signup/signup';
-
+import Profile from "./components/profile/profile";
+import {PrivateRoute} from './components/privateRoute/privateRoute';
 export default ({ childProps }) => (
 	<Switch>
-        <AppliedRoute path="/" exact component={Home} props={childProps} />
-		<AppliedRoute path="/login" exact component={Login} props={childProps} />
-		<AppliedRoute path="/signup" exact component={Signup} props={childProps} />
+		<PrivateRoute exact path="/profile" component={Profile} />
+		<AppliedRoute path="/" exact component={Home} props={childProps} />
+		<Redirect from="*" to="/" />
 	</Switch>
 );

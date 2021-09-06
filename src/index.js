@@ -1,14 +1,17 @@
 import "./index.css";
-import React from "react";
+import React, { useEffect, Suspense } from 'react'
 import ReactDOM from "react-dom";
+import { Router, Route, Redirect } from 'react-router-dom'
+import { Switch } from 'react-router'
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter as Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-
+import history from "./history";
 ReactDOM.render(
-  <Router>
-    <App />
+  <Router history={history}>
+    <Suspense fallback={<div>Loading... </div>}>
+      <App />
+    </Suspense>
   </Router>,
   document.getElementById("root")
 );

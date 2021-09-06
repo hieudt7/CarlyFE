@@ -8,26 +8,26 @@ class Common extends Component {
     return (
       <div>
         <div>
-          <p class="signTxt">{this.props.displayText}</p>
-          <div class="clear">
-            <button class="FacebookButton">
+          <p className="signTxt">{this.props.displayText}</p>
+          <div className="clear">
+            <button className="FacebookButton">
               <img src="./images/Icon_Facebook.png" alt="Facebook" />
               FACEBOOK
             </button>
             <div>
-              <button class="GoogleButton">
+              <button className="GoogleButton">
                 <img src="./images/Icon_Google.png" alt="Google" />
                 GOOGLE
               </button>
             </div>
           </div>
-          <p class="signBodyTxt">
+          <p className="signBodyTxt">
             We will never share any of your data or post anything on your
             behalf.
           </p>
           <hr />
           <Form>
-            <p class="signHeader">{this.props.signHeaderText}</p>
+            <p className="signHeader">{this.props.signHeaderText}</p>
           </Form>
         </div>
       </div>

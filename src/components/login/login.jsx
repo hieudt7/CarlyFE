@@ -3,7 +3,10 @@ import Button from "react-bootstrap/Button";
 import React, { Component } from "react";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import axios from "axios";
-
+// import { useNavigate } from "react-router-dom";
+import Alert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+import history from '../../history'
 class Login extends Component {
   constructor() {
     super();
@@ -12,7 +15,12 @@ class Login extends Component {
       isPasswordFilled: false,
       exampleEmail: "",
       examplePassword: "",
-      emailvaliderror: ""
+      emailvaliderror: "",
+      isError:false,
+      sampleEmail:'candidate@carly.co',
+      // samplePass:'blueCar_345',
+      // sampleEmail: '1',
+      samplePass: '1'
     };
   }
 
@@ -33,7 +41,10 @@ class Login extends Component {
     ) {
       this.getLoginData();
     } else {
-      this.setState({ emailvaliderror: "Email has wrong format" });
+      this.setState({ 
+        emailvaliderror: "Email has wrong format",
+        isError:true, 
+      });
     }
   };
 
@@ -41,17 +52,30 @@ class Login extends Component {
     var session_url = "https://subscribe-carly.drivemycar.me/api/Login";
     var username = this.state.exampleEmail;
     var password = this.state.examplePassword;
-    axios
-      .post(session_url, { id: username, pw: password })
-      .then(response => {
-        console.log("Logged In succesfully " + response.data.userName);
-      })
-      .catch(error => {
-        console.log("Error in Login");
-      });
+    //fake login
+    if (username === this.state.sampleEmail && password === this.state.samplePass) {
+      localStorage.setItem('user', JSON.stringify({ id: 1, name: this.state.exampleEmail })); // set user mockdata
+      history.push('/profile')
+    }
+    else {
+      axios
+        .post(session_url, { id: username, pw: password })
+        .then(response => {
+          localStorage.setItem('user', JSON.stringify({ id: 1, name: this.state.exampleEmail })); // set user mockdata
+          history.push('/profile')
+        })
+        .catch(error => {
+          console.log("Error in Login");
+        });
+    }
   };
-
+  handleCloseAlert = () => {
+    this.setState({
+      isError:false, 
+    })
+  };
   render() {
+    //alert:  error - warning - info - success
     return (
       <div>
         <Form>
@@ -61,6 +85,7 @@ class Login extends Component {
               type="email"
               name="email"
               id="exampleEmail"
+              className={`${this.state.emailvaliderror?'is-error':''}`}
               onChange={this.emailChange}
             />
           </FormGroup>
@@ -77,14 +102,14 @@ class Login extends Component {
         </Form>
         {(this.state.exampleEmail === "" ||
           this.state.examplePassword === "") && (
-          <div class="lottieBtn">
-            <Button variant="primary" size="lg" disabled>
-              Login
-            </Button>{" "}
-          </div>
-        )}
+            <div className="lottieBtn">
+              <Button variant="primary" size="lg" disabled>
+                Login
+              </Button>{" "}
+            </div>
+          )}
         {this.state.exampleEmail !== "" && this.state.examplePassword !== "" && (
-          <div class="lottieBtn">
+          <div className="lottieBtn">
             <Button
               variant="primary"
               size="lg"
@@ -95,13 +120,17 @@ class Login extends Component {
             </Button>{" "}
           </div>
         )}
-
-        <p class="account forgot">
+        <Snackbar open={this.state.isError} autoHideDuration={6000} onClose={this.handleCloseAlert}>
+          <Alert onClose={this.handleCloseAlert} severity="error">
+            {this.state.emailvaliderror}
+          </Alert>
+        </Snackbar>
+        <p className="account forgot">
           <a href="/login">Forgot password?</a>
         </p>
-        <p class="account sign_up">
+        <p className="account sign_up">
           Don't have an account?&nbsp;
-          <a href="/login" class="">
+          <a href="/login" className="">
             Sign up
           </a>
         </p>

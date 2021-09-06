@@ -3,7 +3,8 @@ import Signup from "./components/signup/signup";
 import Login from "./components/login/login";
 import Common from "./components/common/common";
 import "./index.css";
-
+//clear test user storage
+localStorage.removeItem('user')
 export default class Home extends Component {
   constructor() {
     super();
@@ -46,18 +47,18 @@ export default class Home extends Component {
       <div className="Login">
         <div className="tabContainer">
           <ul>
-            <li class={this.state.activeSignUptabName}>
+            <li className={this.state.activeSignUptabName}>
               <span
-                class={this.state.activeSignuptab}
+                className={this.state.activeSignuptab}
                 href="/signup"
                 onClick={this.handleClickSignUp}
               >
                 New to Carly?
               </span>
             </li>
-            <li class={this.state.activeLogintabName}>
+            <li className={this.state.activeLogintabName}>
               <span
-                class={this.state.activeLogintab}
+                className={this.state.activeLogintab}
                 href="/login"
                 onClick={this.handleClickLogin}
               >
