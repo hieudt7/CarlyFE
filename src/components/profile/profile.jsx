@@ -1,5 +1,5 @@
 import "./profile.css";
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -91,7 +91,6 @@ export default function Profile() {
         'https://my-json-server.typicode.com/typicode/demo/posts',
       )
       setData(result.data);
-      console.log(result.data)
     };
     fetchData();
 
@@ -131,7 +130,7 @@ export default function Profile() {
                   ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   : data
                 ).map((row, idx) => (
-                  <TableRow key={row.name}>
+                  <TableRow key={row.id}>
                     <TableCell component="th" scope="row">
                       {idx + 1}
                     </TableCell>

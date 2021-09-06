@@ -1,8 +1,7 @@
 import "./index.css";
-import React, { useEffect, Suspense } from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from "react-dom";
-import { Router, Route, Redirect } from 'react-router-dom'
-import { Switch } from 'react-router'
+import { Router } from 'react-router-dom'
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";

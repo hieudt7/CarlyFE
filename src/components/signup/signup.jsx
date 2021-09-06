@@ -71,7 +71,7 @@ class Signup extends Component {
             />
           </FormGroup>
         </Form>
-        <p class="tcTxt">
+        <p className="tcTxt">
           By signing up, you agree to Carly's website{" "}
           <a
             href="https://www.carly.co/website-terms-conditions"
@@ -92,14 +92,14 @@ class Signup extends Component {
         </p>
         {(this.state.exampleEmail === "" ||
           this.state.examplePassword === "") && (
-          <div class="lottieBtn">
+          <div className="lottieBtn">
             <Button variant="primary" size="lg" disabled>
               Sign Up
             </Button>{" "}
           </div>
         )}
         {this.state.exampleEmail !== "" && this.state.examplePassword !== "" && (
-          <div class="lottieBtn">
+          <div className="lottieBtn">
             <Button
               variant="primary"
               size="lg"
@@ -111,9 +111,9 @@ class Signup extends Component {
           </div>
         )}
 
-        <p class="account">
+        <p className="account">
           Already have an account?&nbsp;
-          <a href="/login" class="">
+          <a href="/login" className="">
             Log in
           </a>
         </p>
